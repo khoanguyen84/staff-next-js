@@ -3,7 +3,7 @@
 import dayjs from "dayjs"
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-
+import Link  from 'next/link';
 export default function StaffTable({ staffList, removeStaffAction }) {
     const handleRemoveStaff = (staff) => {
         Swal.fire({
@@ -56,6 +56,8 @@ export default function StaffTable({ staffList, removeStaffAction }) {
                             <td>{staff.email}</td>
                             <td>
                                 <button onClick={() => handleRemoveStaff(staff)} className="btn btn-sm btn-danger">Remove</button>
+                                <Link href={`/staff-list/detail/${staff.id}`} className='btn btn-sm btn-primary mx-2'>Detail</Link>
+                                <Link href={`/staff-list/modify/${staff.id}`} className='btn btn-sm btn-success'>Modify</Link>
                             </td>
                         </tr>
                     ))

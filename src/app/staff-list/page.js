@@ -1,10 +1,11 @@
 import StaffTable from "@/components/staff/staff-table";
 import { revalidateTag } from "next/cache";
+import Link from "next/link";
 /**
  * chúng ta ko thể sử dụng các hook ở server component 
  */
 export default async function StaffsPage() {
-    let res = await fetch('https://jsonserver-vercel-api.vercel.app/staffs', {
+    let res = await fetch('https://jsonserver-vercel-api.vercel.app/staffs?_sort=id&_order=desc', {
         method: "GET",
         cache: "no-cache",
         next: { tags: ['staff-list'] }
@@ -35,6 +36,7 @@ export default async function StaffsPage() {
     return (
         <>
             <h5>Staff List</h5>
+            <Link href={'/staff-list/create'} className="btn btn-sm btn-primary my-2">Add New Staff</Link>
             <StaffTable
                 staffList={staffList}
                 removeStaffAction={removeStaffAction}
