@@ -23,14 +23,15 @@ export default function CreateStaff({ createStaffAction }) {
     })
 
     const handleCreateStaff = async (values) => {
-        let result = await createStaffAction(values)
-        if(result.code === 200) {
-            toast.success(`Staff created success`)
-            router.push('/staff-list')
-        }
-        else {
-            toast.error(result.message)
-        }
+        console.log(values);
+        // let result = await createStaffAction(values)
+        // if (result.code === 200) {
+        //     toast.success(`Staff created success`)
+        //     router.push('/staff-list')
+        // }
+        // else {
+        //     toast.error(result.message)
+        // }
     }
     return (
         <>
@@ -44,7 +45,7 @@ export default function CreateStaff({ createStaffAction }) {
                     />
                     <span className="invalid-feedback">{errors.fullname?.message}</span>
                 </div>
-                <div className="form-group mb-2">
+                {/* <div className="form-group mb-2">
                     <label className="form-label">Gender</label>
                     <div>
                         <div class="form-check">
@@ -71,6 +72,18 @@ export default function CreateStaff({ createStaffAction }) {
                         </div>
                     </div>
                     <span className="invalid-feedback">{errors.mobile?.message}</span>
+                </div> */}
+                <div className="form-group mb-2">
+                    <label className="form-label">Email</label>
+                    <select
+                        type="email"
+                        className={`form-select ${errors.email?.message ? 'is-invalid' : ''}`}
+                        {...register('gender')}
+                    >
+                        <option value={true}>Male</option>
+                        <option value={false}>Female</option>
+                    </select>
+                    <span className="invalid-feedback">{errors.email?.message}</span>
                 </div>
                 <div className="form-group mb-2">
                     <label className="form-label">Email</label>
