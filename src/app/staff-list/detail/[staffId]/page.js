@@ -1,9 +1,18 @@
 import dayjs from "dayjs"
 import Link from "next/link"
 import { redirect } from "next/navigation"
+
+export async function generateMetadata({ params: { staffId } }) {
+    let res = await fetch(`https://jsonserver-vercel-api.vercel.app/staffs/${staffId}`)
+    let staff = await res.json()
+    return {
+        title: `${staff?.fullname}'s detail`
+    }
+}
+
 export default async function StaffDetailPage({ params: { staffId } }) {
     let res = await fetch(`https://jsonserver-vercel-api.vercel.app/staffs/${staffId}`)
-    if(!res.ok){
+    if (!res.ok) {
         redirect('/error')
     }
     let response = await res.json()

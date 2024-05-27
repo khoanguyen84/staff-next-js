@@ -4,6 +4,10 @@ import Link from "next/link";
 /**
  * chúng ta ko thể sử dụng các hook ở server component 
  */
+
+export const metadata = {
+    title: 'Staff List'
+}
 export default async function StaffsPage() {
     let res = await fetch('https://jsonserver-vercel-api.vercel.app/staffs?_sort=id&_order=desc', {
         method: "GET",
